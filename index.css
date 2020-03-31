@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    text-align: center;
+}
+
+.search-form {
+    text-align: center;
+}
+
+.search-criteria {
+    margin: 1em auto;
+    display: block;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+  }

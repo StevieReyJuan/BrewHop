@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <title>Brewery Hop</title>
+</head>
+<body>
+    <main role="main" class="container">
+        <section class="landing-page">
+            <header role="banner" class="header">
+                <h1>Brewery Hop</h1>
+                <h2>No DD Required</h2>
+            </header>
+
+            <form class="search-form search-criteria">
+                <!-- <input type="text" name="city-search" id="city" class="search-criteria city"
+                placeholder="Enter a City">
+
+                <input type="text" name="state-search" id="state" class="search-criteria state"
+                placeholder="Enter a State"> -->
+
+                <label for="walking-minutes label-text">Enter the time you would be willing to walk in MINUTES:</label>
+                <input type="number" name="walking-minutes" id="minutes" class="search-criteria minutes"
+                value="15">
+
+                <input type="submit" class="submit search-criteria" value="Find Me!">
+            </form>
+        </section>  
+        <section class="results-page">
+            <div id="map"></div>
+            <div id="results">
+                <h2>Breweries Near You:
+                    <ul id="results-list"></ul>
+                </h2>
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=&libraries=places">
+    </script>
+</body>
+</html>
