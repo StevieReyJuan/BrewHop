@@ -1,4 +1,4 @@
-const apiKey = 'AIzaSyCZQwAjWM4MWpvcHAAl7kK6-mMuo3xJ54Q';
+const apiKey = '';
 
 let map, pos;
 
