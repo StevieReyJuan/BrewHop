@@ -2,14 +2,10 @@ const apiKey = '';
 
 let map, pos;
 
-//https://maps.googleapis.com/maps/api/place/findplacefromtext/output?parameters
-
-
 function watchForm() {
     $('.results-page').hide();
     $('form').submit(event => {
         event.preventDefault();
-        //section landing-page replace with results-page
         // const minutes = $('#minutes').val();
         loadMap();
     })
@@ -43,7 +39,7 @@ function initMap() {
         infoWindow.setContent('Your location.');
         infoWindow.open(map);
         map.setCenter(pos);
-    //find breweries function LOOK HERE!
+    //find breweries function LOOK HERE! Declare function here for scope?
         findBreweries(map, pos);
 
         }, function() {
@@ -78,21 +74,45 @@ function findBreweries(map, pos) {
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //   for (let i = 0; i < results.length; i++) {
-    //     addMarker(results[i]);
-    //     displayBreweryInfo(results[i]);
-    //   }
+
       calculateDistances(results, pos);
     }
   }
 
-function addMarker(place) {
+function addMarker(place, distance) {
+    const minutes = $('#minutes').val();
+
     for (let i = 0; i < place.length; i++){
-        const marker = new google.maps.Marker({
-            position: place[i].geometry.location,
-            map:map,
-            // icon:
-          });
+        if (distance.rows[0].elements[i].duration.value <= (minutes*60)) {
+            const marker = new google.maps.Marker({
+                position: place[i].geometry.location,
+                map:map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            });
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>${place[i].name}</h3>
+                        <h4>${distance.rows[0].elements[i].distance.text}</h4>
+                        <h4>${distance.rows[0].elements[i].duration.text}</h4>`
+            })
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+            });
+        } else {
+            const marker = new google.maps.Marker({
+                position: place[i].geometry.location,
+                map:map,
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            });
+            const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>${place[i].name}</h3>
+                        <h4>${distance.rows[0].elements[i].distance.text}</h4>
+                        <h4>${distance.rows[0].elements[i].duration.text}</h4>`
+            })
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+            });
+        }
+
     }
 }
 
@@ -103,6 +123,8 @@ function displayBreweryInfo(placesInfo, distanceInfo) {
             <p>${distanceInfo.destinationAddresses[i]}</p></li>
             <p>${distanceInfo.rows[0].elements[i].distance.text}</p>
             <p>${distanceInfo.rows[0].elements[i].duration.text}</p>`
+
+            //use distance value to compare to user input. if else to set marker icons.
         )
     }
 }
@@ -133,23 +155,17 @@ function calculateDistances(placesResults, pos) {
         if (status !== "OK") {
           alert("Error with distance matrix");
         } else {
-            addMarker(placesResults);
+            addMarker(placesResults, results);
             displayBreweryInfo(placesResults, results);
             console.log(placesResults, results);
-        }
-        //function to display/append distances and walking times
-        //function to change markers that meet criteria. Maybe don't create markers until this step.    
-      }
+        }  
+    }
 }
 
 $(watchForm);
 
-//mapOptions to set markers
+// 5 km/h average walking speed
 
 
 //'bounds' to use bounds of current map
 
-//const marker = new google.maps.Marker({
-//     position: ,
-//     map: map
-// });
