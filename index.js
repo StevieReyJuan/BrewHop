@@ -1,4 +1,4 @@
-const apiKey = 'AIzaSyCZQwAjWM4MWpvcHAAl7kK6-mMuo3xJ54Q';
+const apiKey = '';
 
 let map, pos;
 
@@ -78,37 +78,44 @@ function findBreweries(map, pos) {
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      for (let i = 0; i < results.length; i++) {
-        addMarker(results[i]); //place
-        displayBreweryInfo(results[i]);
-      }
-      const breweryCoords = getBrewCoords(results);
-      calculateDistances(breweryCoords, pos);
+    //   for (let i = 0; i < results.length; i++) {
+    //     addMarker(results[i]);
+    //     displayBreweryInfo(results[i]);
+    //   }
+      calculateDistances(results, pos);
     }
   }
 
 function addMarker(place) {
-    const marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map:map,
-        // icon:
-      });
+    for (let i = 0; i < place.length; i++){
+        const marker = new google.maps.Marker({
+            position: place[i].geometry.location,
+            map:map,
+            // icon:
+          });
+    }
 }
 
-function displayBreweryInfo(place) {
-    $('#results-list').append(
-        `<li><h3>${place.name}</h3>
-        <p>${place.formatted_address}</p></li>`
-    )
+function displayBreweryInfo(placesInfo, distanceInfo) {
+    for (let i = 0; i < placesInfo.length; i++) {
+        $('#results-list').append(
+            `<li><h3>${placesInfo[i].name}</h3>
+            <p>${distanceInfo.destinationAddresses[i]}</p></li>
+            <p>${distanceInfo.rows[0].elements[i].distance.text}</p>
+            <p>${distanceInfo.rows[0].elements[i].duration.text}</p>`
+        )
+    }
 }
 
 function getBrewCoords(array) {
     return array.map(item => item.geometry.location);
 }
 
-function calculateDistances(breweryCoords, pos) {
+function calculateDistances(placesResults, pos) {
 
-    originArray = [];
+    const breweryCoords = getBrewCoords(placesResults);
+
+    const originArray = [];
     originArray.push(pos);
 
     const service = new google.maps.DistanceMatrixService();
@@ -120,13 +127,16 @@ function calculateDistances(breweryCoords, pos) {
         }
 
         service.getDistanceMatrix(request, callback);
+
       // Callback function used to process Distance Matrix response
-      function callback(response, status) {
+      function callback(results, status) {
         if (status !== "OK") {
           alert("Error with distance matrix");
-          return;
+        } else {
+            addMarker(placesResults);
+            displayBreweryInfo(placesResults, results);
+            console.log(placesResults, results);
         }
-        console.log(response);   
         //function to display/append distances and walking times
         //function to change markers that meet criteria. Maybe don't create markers until this step.    
       }
