@@ -16,11 +16,15 @@
             </header>
 
             <form class="search-form search-criteria">
-                <!-- <input type="text" name="city-search" id="city" class="search-criteria city"
-                placeholder="Enter a City">
+                <label for="enter-address label-text">Enter your street address:</label>
+                <input type="text" name="street-search" id="street" class="search-criteria street"
+                placeholder="123 Street" required>
+
+                <input type="text" name="city-search" id="city" class="search-criteria city"
+                placeholder="City" required>
 
                 <input type="text" name="state-search" id="state" class="search-criteria state"
-                placeholder="Enter a State"> -->
+                placeholder="State" required>
 
                 <label for="walking-minutes label-text">Enter the time you would be willing to walk in MINUTES:</label>
                 <input type="number" name="walking-minutes" id="minutes" class="search-criteria minutes"
@@ -28,9 +32,13 @@
 
                 <input type="submit" class="submit search-criteria" value="Find Me!">
             </form>
-        </section>  
+        </section>
+
         <section class="results-page">
             <div id="map"></div>
+
+            <p id="js-error-message" class="error-message"></p>
+            
             <div id="results">
                 <h2>Breweries Near You:
                     <ul id="results-list"></ul>
@@ -43,7 +51,7 @@
     crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=&libraries=places">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0v2CTgsFVesI1JkXVzUBbUiwyOsioUjo&libraries=places">
     </script>
 </body>
 </html>
