@@ -1,4 +1,4 @@
-const apiKey = 'AIzaSyD0v2CTgsFVesI1JkXVzUBbUiwyOsioUjo';
+const apiKey = 'AIzaSyCTo_Ivg79UFnM4fhOdbftGnUQzteXmKxw';
 
 const brewBaseUrl = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=brewery'
 const addressBaseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='
