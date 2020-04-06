@@ -63,4 +63,4 @@ requires an application and a several week approval period. Perhaps in a future 
 
 ## Acknowledgments
 
-* **Walter Guevara** - My mentor and a source of inspiration on where to take this project next
+* **Walter Guevara** - My mentor and a source of inspiration for where to take this project next
