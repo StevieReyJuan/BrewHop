@@ -28,7 +28,8 @@ function getAddressCoords() {
         renderMap(addressInput)
     })
     .catch(err => {
-        $('#js-error-message-geo').text(`Something went wrong: ${err.message}`);
+        $('#js-error-message-geo').text('Sorry; we couldn\'t find the address you were searching for.\
+         Please try one of the buttons below to see if we can find you.');
     });
 }
 
@@ -44,13 +45,20 @@ function watchForm() {
 function useGeolocation() {
     $('.results-page').on('click', '#js-geolocation', function (event) {
         geolocation();
-    })
+    });
+}
+
+function reload() {
+    $('.results-page').on('click', '#js-reset', function (event) {
+        window.location.reload();
+    });
 }
 
 function loadMap() {
     initMap();
     getAddressCoords();
     useGeolocation();
+    reload();
     $('.landing-page').hide();
     $('.results-page').show();
 }
@@ -178,14 +186,26 @@ function clearResults(markers) {
 }
 
 function displayBreweryInfo(placesInfo, distanceInfo) {
+    const minutes = $('#minutes').val();
     //Loop through results and append content to ul
     for (let i = 0; i < placesInfo.length; i++) {
-        $('#results-list').append(
-            `<li id="brew-list"><h3>${placesInfo[i].name}</h3>
+        if (distanceInfo.rows[0].elements[i].duration.value <= (minutes*60)) {
+            $('#results-list').append(
+                `<li class="brew-list"><h3>${placesInfo[i].name}</h3>
+                <p>${distanceInfo.destinationAddresses[i]}</p>
+                <p>${distanceInfo.rows[0].elements[i].distance.text}</p>
+                <p>${distanceInfo.rows[0].elements[i].duration.text}</p>
+                <p class="green-text">Walkable!</p></li>`
+            );
+        } else {          
+            $('#results-list').append(
+            `<li class="brew-list"><h3>${placesInfo[i].name}</h3>
             <p>${distanceInfo.destinationAddresses[i]}</p>
             <p>${distanceInfo.rows[0].elements[i].distance.text}</p>
-            <p>${distanceInfo.rows[0].elements[i].duration.text}</p></li>`
-        );
+            <p>${distanceInfo.rows[0].elements[i].duration.text}</p>
+            <p class="red-text">Out of walking range...</p></li>`
+            );
+        }
     }
 }
 

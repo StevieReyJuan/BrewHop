@@ -99,8 +99,6 @@ body {
 
 .lower-results {
     text-align: left;
-    overflow: auto;
-    height: 300px;
 }
 
 .results-page {
@@ -125,14 +123,23 @@ ul {
 }
 
 .green-text {
+    color: limegreen;
+    font-size: 1.25em;
+    font-weight: 700;
+}
 
-    text-shadow: -1px 0 rgb(144, 200, 62), 0 1px rgb(144, 200, 62), 1px 0 rgb(144, 200, 62), 0 -1px rgb(144, 200, 62);
+.red-text {
+    color: red;
 }
 
 .button:hover,
 .button:active {
     transition: 0.1s;
     border: 1px solid rgb(144, 200, 62);
+}
+
+.hidden {
+    display: none;
 }
 
 @media only screen and (min-width: 500px) {

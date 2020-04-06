@@ -18,21 +18,23 @@
             </header>
 
             <form class="search-form search-criteria">
-                <label for="enter-address label-text">Enter your street address:</label>
+                <label for="street">Enter your street address:</label>
                 <input type="text" name="street-search" id="street" class="search-criteria street"
                 placeholder="123 Street" required>
 
+                <label for="city" class="hidden"></label>
                 <input type="text" name="city-search" id="city" class="search-criteria city"
                 placeholder="City" required>
 
+                <label for="state" class="hidden"></label>
                 <input type="text" name="state-search" id="state" class="search-criteria state"
                 placeholder="State" required>
 
-                <label for="walking-minutes label-text">How long (in <em>minutes</em>) are you willing to walk?</label>
+                <label for="minutes">How long (in <em>minutes</em>) are you willing to walk?</label>
                 <input type="number" name="walking-minutes" id="minutes" class="search-criteria minutes"
-                value="15">
+                value="15" required>
 
-                <input type="submit" class="submit search-criteria " value="Find Me!" required>
+                <input type="submit" class="submit search-criteria " value="Find Me!">
             </form>
         </section>
 
@@ -47,7 +49,7 @@
             <p id="js-error-message-geo" class="error-message"></p>
             <p id="js-error-message-places" class="error-message"></p>
 
-            <a href="/"><button class="button" id="js-reset">New Address</button></a>
+            <button class="button" id="js-reset">New Address</button>
             <button class="button" id="js-geolocation">Use my location</button>
             
             <h2 class="brews-near-you">Breweries Near You:</h2>
