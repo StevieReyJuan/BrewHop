@@ -2,7 +2,7 @@ let map, pos, descriptionWindow, infoWindow;
 
 const markers = [];
 
-const apiKey = '';
+const apiKey = 'AIzaSyD1wD0ttwj1q98e2vlmmzBgF3XPaVuY5Sw';
 
 const geoBaseUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 //Use Google Geocode API to convert user inputed address to fetch lat/lng coords
@@ -25,7 +25,6 @@ function getAddressCoords() {
     })
     .then((responseJson) => {
         const addressInput = responseJson.results[0].geometry.location;
-        console.log(addressInput);
         renderMap(addressInput)
     })
     .catch(err => {
@@ -146,9 +145,9 @@ function addMarker(place, distance) {
     for (let i = 0; i < place.length; i++){
 
         if (distance.rows[0].elements[i].duration.value <= (minutes*60)) {
-            color = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            color = 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         } else {
-            color = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            color = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
         }
         const marker = new google.maps.Marker({
             position: place[i].geometry.location,
@@ -220,7 +219,6 @@ function calculateDistances(placesResults, pos) {
         } else {
             addMarker(placesResults, results);
             displayBreweryInfo(placesResults, results);
-            console.log(placesResults, results);
         }  
     }
 
