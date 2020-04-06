@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap" rel="stylesheet">
     <title>Brewery Hop</title>
 </head>
 <body>
     <main role="main" class="container">
         <section class="landing-page">
             <header role="banner" class="header">
-                <h1>Brewery Hop</h1>
-                <h2>No DD Required</h2>
+                <img class="hop-pic" src="/images/beerhop.png" alt="A green beer hop">
+                <h1 class="brewhop-title">BrewHop</h1>
+                <h2 class="brewhop-subtitle">No DD Required</h2>
             </header>
 
             <form class="search-form search-criteria">
@@ -26,24 +28,30 @@
                 <input type="text" name="state-search" id="state" class="search-criteria state"
                 placeholder="State" required>
 
-                <label for="walking-minutes label-text">Enter the time you would be willing to walk in MINUTES:</label>
+                <label for="walking-minutes label-text">How long (in <em>minutes</em>) are you willing to walk?</label>
                 <input type="number" name="walking-minutes" id="minutes" class="search-criteria minutes"
                 value="15">
 
-                <input type="submit" class="submit search-criteria" value="Find Me!">
+                <input type="submit" class="submit search-criteria " value="Find Me!">
             </form>
         </section>
 
         <section class="results-page">
+            <header role="banner" class="header">
+                <img class="map-hop-pic" src="/images/beerhop.png" alt="A green beer hop">
+                <h1 class="brewhop-title">BrewHop</h1>
+            </header>
+
             <div id="map"></div>
 
-            <p id="js-error-message" class="error-message"></p>
+            <p id="js-error-message-geo" class="error-message"></p>
+            <p id="js-error-message-places" class="error-message"></p>
+
+            <a href="/"><button class="button" id="js-reset">New Address</button></a>
+            <button class="button" id="js-geolocation">Use my location</button>
             
-            <div id="results">
-                <h2>Breweries Near You:
-                    <ul id="results-list"></ul>
-                </h2>
-            </div>
+            <h2 class="brews-near-you">Breweries Near You:</h2>
+                <ul class="lower-results" id="results-list"></ul>
         </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -51,7 +59,7 @@
     crossorigin="anonymous"></script>
     <script src="index.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmrepexksTLoGeV__mOtcItWwon89lqR4&libraries=places">
+    src="https://maps.googleapis.com/maps/api/js?key=&libraries=places">
     </script>
 </body>
 </html>

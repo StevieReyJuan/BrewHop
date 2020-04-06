@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-size: 1.25em;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    background: rgb(255,225,53);
+    background-size: auto;
+}
+
 .header {
     text-align: center;
 }
@@ -11,12 +20,48 @@
 }
 
 .search-criteria {
-    margin: 1em auto;
+    width: 90%;
+    margin: 1.5em auto;
     display: block;
+    font-size: 1em;
+}
+
+.minutes {
+    width: 50px;
+    text-align: right;
+}
+
+.submit {
+    background: #ffffff;
+    width: 95px;
+    font-size: 1em;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: .25em;
+    cursor: pointer;
+}
+
+.submit:hover,
+.submit:active {
+    transition: 0.1s;
+    border: 1px solid rgb(144, 200, 62);
+}
+
+.button {
+    background: #ffffff;
+    width: 100px;
+    height: 60px;
+    font-size: 1em;
+    margin: 0 1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.25em;
 }
 
 .error-message {
     color: red;
+    margin: 1em;
 }
 
 .hidden {
@@ -24,6 +69,144 @@
 }
 
 #map {
-    height: 500px;
-    width: 100%;
+    margin: auto;
+    height: 300px;
+    width: 90%;
   }
+
+.brewhop-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 4em;
+    color: white;
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    margin-top: 0;
+    margin-bottom: .25em;
+}
+
+.brewhop-subtitle {
+    margin-top: .5em;
+    margin-bottom: 1.25em;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.hop-pic, .map-hop-pic {
+    width: 50px;
+    position: relative;
+    top: 1em;
+}
+
+.lower-results {
+    text-align: left;
+    overflow: auto;
+    height: 300px;
+}
+
+.results-page {
+    text-align: center;
+}
+
+.results-page .brewhop-title {
+    margin: 0 auto;
+}
+
+.brews-near-you {
+    text-align: center;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    font-size: 1.5em;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.green-text {
+
+    text-shadow: -1px 0 rgb(144, 200, 62), 0 1px rgb(144, 200, 62), 1px 0 rgb(144, 200, 62), 0 -1px rgb(144, 200, 62);
+}
+
+.button:hover,
+.button:active {
+    transition: 0.1s;
+    border: 1px solid rgb(144, 200, 62);
+}
+
+@media only screen and (min-width: 500px) {
+
+    .hop-pic {
+        width: 90px;
+        position: absolute;
+        top: 1.5em;
+        left: 13em;
+    }
+
+    .brewhop-title {
+        font-family: 'Anton', sans-serif;
+        font-size: 5em;
+        color: white;
+        text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+        margin-top: 0;
+        margin-bottom: .25em;
+    }
+
+    .search-criteria {
+        width: 400px;
+    }
+
+    .submit {
+        width: 95px;
+    }
+
+    .minutes {
+        width: 50px;
+        text-align: right;
+    }
+
+    .hop-pic {
+        width: 100px;
+        position: relative;
+        top: 4.5em;
+        left: 9em;
+    }
+
+    .map-hop-pic {
+        width: 80px;
+        position: relative;
+        top: 2.75em;
+        right: 11em;
+    }
+
+    .results-page .brewhop-title {
+        margin: .25em auto;
+        margin-top: -.75em;
+    }
+
+    .brews-near-you {
+        font-size: 2em;
+        margin-bottom: 1.25em;
+    }
+
+    #map {
+        margin: auto;
+        height: 400px;
+        width: 90%;
+      }
+
+    .lower-results {
+        margin: 0 3%;
+    }
+
+    .button {
+        margin: 0 5%;
+        cursor: pointer;
+    }
+
+    #js-reset {
+        margin-right: 40%
+    }
+
+}
